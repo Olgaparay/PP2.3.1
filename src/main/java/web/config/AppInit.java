@@ -9,32 +9,25 @@ import jakarta.servlet.ServletException;
 
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-    // Метод, указывающий на класс конфигурации
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return null;
+        return new Class[]{AppConfig.class};
     }
 
-
-    // Добавление конфигурации, в которой инициализируем ViewResolver, для корректного отображения jsp.
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{
-                WebConfig.class
-        };
+        return new Class<?>[]{WebConfig.class};
     }
 
-
-    /* Данный метод указывает url, на котором будет базироваться приложение */
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
 
     @Override
-    public void onStartup(ServletContext ServletContext) throws ServletException {
-        super.onStartup(ServletContext);
-        registerHiddenFieldFilter(ServletContext);
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        registerHiddenFieldFilter(servletContext);
     }
 
     private void registerHiddenFieldFilter(ServletContext aContext) {
@@ -45,5 +38,4 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
                         new CharacterEncodingFilter("UTF-8", true, true))
                 .addMappingForUrlPatterns(null, false, "/*");
     }
-
 }

@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.servis.UserServiceImpl;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/users")
 public class UserController {
@@ -24,18 +22,18 @@ public class UserController {
     @GetMapping
     public String index(ModelMap model) {
         model.addAttribute("users", userService.getAllUsers());
-        return "users";
+        return "/WEB-INF/pages/users.html";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("user", userService.getUserById(id));
-        return "show";
+        return "/WEB-INF/pages/show.html";
     }
 
     @GetMapping("/new")
     public String newUser(@ModelAttribute("user") User user) {
-        return "new";
+        return "/WEB-INF/pages/new.html";
     }
 
     @PostMapping()
@@ -48,7 +46,7 @@ public class UserController {
     public String edit(@PathVariable("id") Long id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
-        return "edit";
+        return "/WEB-INF/pages/edit.html";
     }
 
     @PatchMapping("/{id}")

@@ -13,7 +13,7 @@
         <th>Age</th>
         <th>Operations</th>
     </tr>
-    <tr th:each="user : ${allUsers}">
+    <tr th:each="user : ${users}">
         <td th:text="${user.id}"/>
         <td th:text="${user.name}"/>
         <td th:text="${user.username}"/>
