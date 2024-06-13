@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>User Details</title>
+  <title>User</title>
 </head>
 <body>
-<h2>User Details</h2>
-<ul>
-  <li>ID: <span th:text="${user.id}"></span></li>
-  <li>Name: <span th:text="${user.name}"></span></li>
-  <li>Username: <span th:text="${user.username}"></span></li>
-  <li>Age: <span th:text="${user.age}"></span></li>
-</ul>
-<a href="/users">Back to Users</a>
+
+<p th:text="${user.getName()}">Value</p>
+<p th:text="${user.getAge()}">Value</p>
+<p th:text="${user.getEmail()}">Value</p>
+<p th:text="${user.getId()}">Value</p>
+
+<a th:href="@{/{id}/edit(id=${user.getId()})}">Edit</a>
+<form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
+  <br/>
+  <input type="submit" value="Delete" />
+</form>
+
 </body>
 </html>
